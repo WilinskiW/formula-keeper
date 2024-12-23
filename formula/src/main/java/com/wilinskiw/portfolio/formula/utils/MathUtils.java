@@ -1,4 +1,4 @@
-package com.wilinskiw.portfolio.latex_parser;
+package com.wilinskiw.portfolio.formula.utils;
 
 public class MathUtils {
     public double nSqrt(double x, double n) {

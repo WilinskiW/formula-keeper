@@ -1,6 +1,6 @@
-package com.wilinskiw.portfolio.latex_parser;
+package com.wilinskiw.portfolio.formula.parser;
 
-public enum Latex {
+public enum LatexDictionary {
     CDOT("\\\\cdot", "*"),
     DIV("\\\\div", "/"),
     FRAC("\\\\frac\\{([^}]+)}\\{([^}]+)}", "($1)/($2)"),
@@ -14,12 +14,13 @@ public enum Latex {
     COS("\\\\cos(\\d+)", "T(java.lang.Math).cos(T(java.lang.Math).toRadians($1))"),
     TAN("\\\\tan(\\d+)", "T(java.lang.Math).tan(T(java.lang.Math).toRadians($1))"),
     PI("\\\\pi", "T(java.lang.Math).PI"),
-    ROUND_BRACKETS("\\\\left\\(([^)]+)\\\\right\\)", "($1)");
+    ROUND_BRACKETS("\\\\left\\(([^)]+)\\\\right\\)", "($1)"),
+    PERCENT("(\\d+)\\\\%", "$1 * 0.01");
 
     private final String latexFormat;
     private final String value;
 
-    Latex(String latexFormat, String value) {
+    LatexDictionary(String latexFormat, String value) {
         this.latexFormat = latexFormat;
         this.value = value;
     }

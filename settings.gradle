@@ -1,4 +1,4 @@
 rootProject.name = 'formula-keeper'
 
-include 'latex-parser'
+include 'formula'
 

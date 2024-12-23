@@ -1,5 +1,7 @@
-package com.wilinskiw.portfolio.latex_parser;
+package com.wilinskiw.portfolio.formula;
 
+import com.wilinskiw.portfolio.formula.parser.CalculationParser;
+import com.wilinskiw.portfolio.formula.parser.LatexParser;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +15,11 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        String input = "5\\cdot5";
-        LatexParser latexParser = new LatexParser();
-        System.out.println(latexParser.calculate(input));
+        String latexInput = "50\\% * 54";
+        CalculationParser latexParser = new LatexParser();
+        String formula = latexParser.parse(latexInput);
+        System.out.println("Converted Formula: " + formula);
+        System.out.println(latexParser.calculate(formula));
     }
 
 }
