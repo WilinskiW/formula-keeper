@@ -20,7 +20,7 @@ public class LatexParser implements CalculationParser{
             Matcher matcher = pattern.matcher(formula);
 
             if (matcher.find()) {
-                formula = formula.replaceAll(pattern.pattern(), latex.getValue());
+                formula = matcher.replaceAll(latex.getValue());
             }
         }
         return formula;
