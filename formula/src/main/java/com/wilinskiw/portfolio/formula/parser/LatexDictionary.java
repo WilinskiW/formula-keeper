@@ -16,8 +16,8 @@ public enum LatexDictionary {
     PI("\\\\pi", "T(java.lang.Math).PI"),
     ROUND_BRACKETS("\\\\left\\(([^)]+)\\\\right\\)", "($1)"),
     PERCENT("(\\d+)\\\\%", "$1 * 0.01"),
-    LETTER_NEXT_TO_LETTER("\\b([a-zA-Z])([a-zA-Z])", "$1*$2"),
     NUMBER_NEXT_TO_LETTER("(\\d+)([a-zA-Z])", "$1*$2"),
+    LETTER_NEXT_TO_LETTER("\\b([a-zA-Z])([a-zA-Z])", "$1*$2"),
     LETTER_NEXT_TO_NUMBER("([a-zA-Z])(\\d+)", "$1*$2"),
     LEFT_BRACKET_TO_VARIABLE("(\\d+|[a-zA-z])\\(","$1*("),
     RIGHT_BRACKET_TO_VARIABLE("\\)(\\d+|[a-zA-z])",")*$1");

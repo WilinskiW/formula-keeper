@@ -1,5 +1,6 @@
 package com.wilinskiw.portfolio.formula;
 
+import com.wilinskiw.portfolio.formula.model.Formula;
 import com.wilinskiw.portfolio.formula.parser.CalculationParser;
 import com.wilinskiw.portfolio.formula.parser.LatexParser;
 import org.springframework.boot.CommandLineRunner;
@@ -15,11 +16,11 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        String latexInput = "\\frac{abc}{4}";
+        String latexInput = "b^2-4ac";
         CalculationParser latexParser = new LatexParser();
-        String formula = latexParser.parse(latexInput);
+        Formula formula = latexParser.parse(latexInput);
         System.out.println("Converted Formula: " + formula);
-        System.out.println(latexParser.calculate(formula));
+        System.out.println(latexParser.calculate(formula.putValuesOfVariables()));
     }
 
 }
