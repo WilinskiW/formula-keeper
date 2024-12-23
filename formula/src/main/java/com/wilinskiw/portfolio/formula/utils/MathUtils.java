@@ -1,6 +1,15 @@
 package com.wilinskiw.portfolio.formula.utils;
 
 public class MathUtils {
+    public double div(double a, double b){
+        try {
+            return a / b;
+        }
+        catch (ArithmeticException e){
+            throw new ArithmeticException("Error. Divided by 0");
+        }
+    }
+
     public double nSqrt(double x, double n) {
         if (x < 0 && n % 2 != 0) {
             return -Math.pow(-x, 1.0 / n);

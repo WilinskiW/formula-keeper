@@ -36,7 +36,7 @@ public class LatexParser implements CalculationParser {
     }
 
     public Map<String, Double> findVariables(String formula) {
-        Pattern pattern = Pattern.compile("\\b[a-zA-Z]");
+        Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9])");
         Matcher matcher = pattern.matcher(formula);
         Map<String, Double> variables = new TreeMap<>();
 
@@ -48,13 +48,13 @@ public class LatexParser implements CalculationParser {
     }
 
     @Override
-    public double calculate(String formula) {
+    public double calculate(Formula formula) {
         ExpressionParser parser = new SpelExpressionParser();
         EvaluationContext context = new StandardEvaluationContext();
         context.setVariable("mathUtils", new MathUtils());
 
         try {
-            Double result = parser.parseExpression(formula).getValue(context, Double.class);
+            Double result = parser.parseExpression(formula.putValuesOfVariables()).getValue(context, Double.class);
             return result != null ? result : 0;
         } catch (ParseException e) {
             System.out.println("Unable to convert latex to calculation format.");

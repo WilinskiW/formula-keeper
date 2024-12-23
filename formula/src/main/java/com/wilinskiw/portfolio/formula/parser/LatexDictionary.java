@@ -3,10 +3,10 @@ package com.wilinskiw.portfolio.formula.parser;
 public enum LatexDictionary {
     CDOT("\\\\cdot", "*"),
     DIV("\\\\div", "/"),
-    FRAC("\\\\frac\\{([^}]+)}\\{([^}]+)}", "($1)/($2)"),
+    FRAC("\\\\frac\\{([^}]+)}\\{([^}]+)}", "#mathUtils.div($1,$2)"),
     SQRT("\\\\sqrt\\{([^}]+)}", "T(java.lang.Math).sqrt($1)"),
     N_SQRT("\\\\sqrt\\[([^\\]+])\\]\\{([^}]+)\\}", "#mathUtils.nSqrt($2,$1)"),
-    POW("(\\d+)\\^\\{([^}]+)\\}", "T(java.lang.Math).pow($1,$2)"),
+    POW("(\\d+|[a-zA-Z])\\^\\{([^}]+)\\}", "T(java.lang.Math).pow($1,$2)"),
     LOG10("\\\\log(\\d+)", "T(java.lang.Math).log10($1)"),
     DIGIT_BASE_LOG("\\\\log\\_(\\d)(\\d+)", "#mathUtils.logBase($1,$2)"),
     NUMBER_BASE_LOG("\\\\log\\_\\{([^}]+)}(\\d+)", "#mathUtils.logBase($1,$2)"),
