@@ -15,7 +15,7 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        String latexInput = "50\\% * 54";
+        String latexInput = "\\frac{abc}{4}";
         CalculationParser latexParser = new LatexParser();
         String formula = latexParser.parse(latexInput);
         System.out.println("Converted Formula: " + formula);

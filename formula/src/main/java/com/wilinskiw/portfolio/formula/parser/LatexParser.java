@@ -16,16 +16,21 @@ public class LatexParser implements CalculationParser{
     public String parse(String input) {
         String formula = input;
         for (LatexDictionary latex : LatexDictionary.values()) {
-            Pattern pattern = Pattern.compile(latex.getLatexFormat());
-            Matcher matcher = pattern.matcher(formula);
-
-            if (matcher.find()) {
-                formula = matcher.replaceAll(latex.getValue());
-            }
+            formula = replace(latex, formula);
         }
         return formula;
     }
 
+    private String replace(LatexDictionary latex, String formula){
+        Pattern pattern = Pattern.compile(latex.getLatexFormat());
+        Matcher matcher = pattern.matcher(formula);
+
+        while (matcher.find()) {
+            formula = matcher.replaceAll(latex.getValue());
+            matcher = pattern.matcher(formula);
+        }
+        return formula;
+    }
 
     public void findVariables(String formula){
 
