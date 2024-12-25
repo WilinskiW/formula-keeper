@@ -8,6 +8,8 @@ import org.springframework.expression.ParseException;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -17,7 +19,7 @@ public class LatexParser implements CalculationParser {
 
     @Override
     public Formula parse(String input) {
-        String formula = input;
+        String formula = addAsterisk(input);
         for (LatexDictionary latex : LatexDictionary.values()) {
             formula = replace(latex, formula);
         }
@@ -35,8 +37,35 @@ public class LatexParser implements CalculationParser {
         return formula;
     }
 
+    public String addAsterisk(String latexInput) {
+
+        String regex = "(?<!\\\\)\\b\\w{2,}\\b";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(latexInput);
+
+        StringBuilder result = new StringBuilder();
+        int lastEnd = 0;
+
+        while (matcher.find()) {
+            result.append(latexInput, lastEnd, matcher.start());
+
+            String match = matcher.group();
+
+            String transformed = match.replaceAll("(.)", "$1*");
+            transformed = transformed.substring(0, transformed.length() - 1);
+
+            result.append(transformed);
+            lastEnd = matcher.end();
+        }
+
+        result.append(latexInput.substring(lastEnd));
+
+        return result.toString();
+    }
+
     public Map<String, Double> findVariables(String formula) {
-        Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9])");
+        Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9(])");
         Matcher matcher = pattern.matcher(formula);
         Map<String, Double> variables = new TreeMap<>();
 

@@ -16,7 +16,7 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args)  {
-        String latexInput = "b^{4a}-4ac";
+        String latexInput = "b^{4a}-4ac+\\log_24";
         CalculationParser latexParser = new LatexParser();
         Formula formula = latexParser.parse(latexInput);
         System.out.println("Converted Formula: " + formula);

@@ -13,14 +13,16 @@ public class Formula {
         this.variables = variables;
     }
 
-    public String putValuesOfVariables(){
-        if(variables.keySet().isEmpty()){
+    public String putValuesOfVariables() {
+        if (variables.isEmpty()) {
             return parsedForm;
         }
 
         String calculationForm = parsedForm;
-        for(String variable : variables.keySet()){
-            calculationForm = calculationForm.replaceAll(variable, variables.get(variable).toString());
+
+        for (String variable : variables.keySet()) {
+            calculationForm = calculationForm.replaceAll("(?<![a-zA-Z0-9])" + variable + "(?![a-zA-Z0-9(])",
+                    variables.get(variable).toString());
         }
 
         return calculationForm;
