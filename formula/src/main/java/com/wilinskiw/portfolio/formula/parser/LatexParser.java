@@ -34,12 +34,16 @@ public class LatexParser {
     private String replace(String latexPattern, String formula) {
         Pattern pattern = Pattern.compile(dictionaryReader.getLatexFormat(latexPattern));
         Matcher matcher = pattern.matcher(formula);
+        StringBuilder result = new StringBuilder();
 
         while (matcher.find()) {
-            formula = formula.replaceAll(pattern.pattern(), dictionaryReader.getReplacementFormat(latexPattern));
+            matcher.appendReplacement(result, dictionaryReader.getReplacementFormat(latexPattern));
         }
-        return formula;
+        matcher.appendTail(result);
+
+        return result.toString();
     }
+
 
     private Map<String, Double> findVariables(String formula) {
         Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9(])");
