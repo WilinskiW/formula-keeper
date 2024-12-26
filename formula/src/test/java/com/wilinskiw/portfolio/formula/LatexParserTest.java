@@ -4,10 +4,12 @@ import com.wilinskiw.portfolio.formula.model.Formula;
 import com.wilinskiw.portfolio.formula.parser.latex.LatexParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.expression.ParseException;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LatexParserTest {
     private LatexParser latexParser;
@@ -24,6 +26,11 @@ public class LatexParserTest {
         assertEquals("b^{4a}-4ac+\\log_24\\cdot24", testFormula.inputForm());
         assertEquals("T(java.lang.Math).pow(b,4*a)-4*a*c+#mathUtils.logBase(2,4)*24", testFormula.parsedForm());
         assertEquals(Map.of("a", 0.0, "b", 0.0, "c", 0.0), testFormula.variables());
+    }
+
+    @Test
+    public void parseLatexWhileLatexFunctionIsNotInDictionaryTest() {
+        assertThrows(ParseException.class, () -> latexParser.parse("4\\bat4"));
     }
 
     @Test

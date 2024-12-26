@@ -3,6 +3,7 @@ package com.wilinskiw.portfolio.formula.parser.latex;
 import com.wilinskiw.portfolio.formula.model.Formula;
 import com.wilinskiw.portfolio.formula.parser.AsteriskAdder;
 import com.wilinskiw.portfolio.formula.parser.MathFormatParser;
+import org.springframework.expression.ParseException;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,6 +24,11 @@ public class LatexParser implements MathFormatParser {
         for (LatexDictionary latex : LatexDictionary.values()) {
             formula = replace(latex, formula);
         }
+
+        if(formula.contains("\\")){
+            throw new ParseException(formula, 0, "Parser couldn't recognise latex function");
+        }
+
         return new Formula(input, formula, findVariables(formula));
     }
 
