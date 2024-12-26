@@ -8,7 +8,7 @@ public class MathUtils {
             throw new ArithmeticException("Error. Divided by 0");
     }
 
-    public double nSqrt(double x, int n) {
+    public double nSqrt(double x, double n) {
         if (x < 0 && n % 2 != 0) {
             return -Math.pow(-x, 1.0 / n);
         } else if (x < 0) {
@@ -17,7 +17,7 @@ public class MathUtils {
         return Math.pow(x, 1.0 / n);
     }
 
-    public double logBase(int base, int value) {
+    public double logBase(double base, double value) {
         if (base <= 0 || base == 1) {
             throw new IllegalArgumentException("Log base must be greater than 0 and can't equal 1");
         }

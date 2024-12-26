@@ -34,6 +34,12 @@ public class LatexParserTest {
     }
 
     @Test
+    public void parseLatexComma(){
+        Formula testFormula = latexParser.parse("4,4");
+        assertEquals("4.4", testFormula.parsedForm());
+    }
+
+    @Test
     public void parseLatexCdotTest() {
         Formula testFormula = latexParser.parse("4\\cdot4+a\\cdot2");
         assertEquals("4*4+a*2", testFormula.parsedForm());

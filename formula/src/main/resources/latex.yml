@@ -1,4 +1,7 @@
 latexDictionary:
+  DOT:
+    latexFormat: ","
+    value: "."
   CDOT:
     latexFormat: "\\\\cdot"
     value: "*"
@@ -12,7 +15,7 @@ latexDictionary:
     latexFormat: "\\\\sqrt\\{([^}]+)}"
     value: "T(java.lang.Math).sqrt($1)"
   N_SQRT:
-    latexFormat: "\\\\sqrt\\[([^\\]+])\\]\\{([^}]+)}"
+    latexFormat: "\\\\sqrt\\[([^\\]]+)]\\{([^}]+)}"
     value: "#mathUtils.nSqrt($2,$1)"
   POW:
     latexFormat: "(\\d+|[a-zA-Z])\\^\\{([^}]+)}"

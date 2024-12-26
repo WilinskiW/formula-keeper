@@ -16,7 +16,7 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String latexInput = "\\frac{a}{4}-b\\cdot5+2";
+        String latexInput = "\\frac{a}{4}-b\\cdot5+2+\\sqrt[4.4]{4.4}";
         LatexParser latexParser = new LatexParser();
         Formula formula = latexParser.parse(latexInput);
         System.out.println("Converted Formula: " + formula);
