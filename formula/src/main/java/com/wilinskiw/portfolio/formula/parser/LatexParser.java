@@ -8,34 +8,35 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LatexParser{
-    private final LatexAsteriskAdder latexAsteriskAdder;
+public class LatexParser {
+    private final AsteriskAdder asteriskAdder;
+    private final LatexDictionaryReader dictionaryReader;
 
     public LatexParser() {
-        this.latexAsteriskAdder = new LatexAsteriskAdder();
+        this.asteriskAdder = new AsteriskAdder();
+        this.dictionaryReader = new LatexDictionaryReader();
     }
 
     public Formula parse(String input) {
-        String formula = latexAsteriskAdder.addAsterisks(input);
+        String formula = asteriskAdder.addAsterisks(input);
 
-        for (LatexDictionary latex : LatexDictionary.values()) {
-            formula = replace(latex, formula);
+        for (String latexPattern : dictionaryReader.getLatexNames()) {
+            formula = replace(latexPattern, formula);
         }
 
-        if(formula.contains("\\")){
+        if (formula.contains("\\")) {
             throw new ParseException(formula, 0, "Parser couldn't recognise latex function");
         }
 
         return new Formula(input, formula, findVariables(formula));
     }
 
-
-    private String replace(LatexDictionary latex, String formula) {
-        Pattern pattern = Pattern.compile(latex.getLatexFormat());
+    private String replace(String latexPattern, String formula) {
+        Pattern pattern = Pattern.compile(dictionaryReader.getLatexFormat(latexPattern));
         Matcher matcher = pattern.matcher(formula);
 
         while (matcher.find()) {
-            formula = formula.replaceAll(pattern.pattern(), latex.getValue());
+            formula = formula.replaceAll(pattern.pattern(), dictionaryReader.getReplacementFormat(latexPattern));
         }
         return formula;
     }

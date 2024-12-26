@@ -1,16 +1,16 @@
 package com.wilinskiw.portfolio.formula;
 
-import com.wilinskiw.portfolio.formula.parser.LatexAsteriskAdder;
+import com.wilinskiw.portfolio.formula.parser.AsteriskAdder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LatexAsteriskAdderTest {
-    private LatexAsteriskAdder adder;
+public class AsteriskAdderTest {
+    private AsteriskAdder adder;
     @BeforeEach
     void setUp() {
-        this.adder = new LatexAsteriskAdder();
+        this.adder = new AsteriskAdder();
     }
 
     @Test

@@ -1,0 +1,46 @@
+latexDictionary:
+  CDOT:
+    latexFormat: "\\\\cdot"
+    value: "*"
+  DIV:
+    latexFormat: "\\\\div"
+    value: "/"
+  FRAC:
+    latexFormat: "\\\\frac\\{([^}]+)}\\{([^}]+)}"
+    value: "#mathUtils.div($1,$2)"
+  SQRT:
+    latexFormat: "\\\\sqrt\\{([^}]+)}"
+    value: "T(java.lang.Math).sqrt($1)"
+  N_SQRT:
+    latexFormat: "\\\\sqrt\\[([^\\]+])\\]\\{([^}]+)}"
+    value: "#mathUtils.nSqrt($2,$1)"
+  POW:
+    latexFormat: "(\\d+|[a-zA-Z])\\^\\{([^}]+)}"
+    value: "T(java.lang.Math).pow($1,$2)"
+  LOG10:
+    latexFormat: "\\\\log(\\d+)"
+    value: "T(java.lang.Math).log10($1)"
+  DIGIT_BASE_LOG:
+    latexFormat: "\\\\log\\_(\\d)(\\d+)"
+    value: "#mathUtils.logBase($1,$2)"
+  NUMBER_BASE_LOG:
+    latexFormat: "\\\\log\\_\\{([^}]+)}(\\d+)"
+    value: "#mathUtils.logBase($1,$2)"
+  SIN:
+    latexFormat: "\\\\sin(\\d+)"
+    value: "#mathUtils.sin($1)"
+  COS:
+    latexFormat: "\\\\cos(\\d+)"
+    value: "#mathUtils.cos($1)"
+  TAN:
+    latexFormat: "\\\\tan(\\d+)"
+    value: "#mathUtils.tan($1)"
+  PI:
+    latexFormat: "\\\\pi"
+    value: "T(java.lang.Math).PI"
+  ROUND_BRACKETS:
+    latexFormat: "\\\\left\\(([^)]+)\\\\right\\)"
+    value: "($1)"
+  PERCENT:
+    latexFormat: "(\\d+)\\\\%"
+    value: "$1*0.01"

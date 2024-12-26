@@ -3,7 +3,7 @@ package com.wilinskiw.portfolio.formula.parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LatexAsteriskAdder {
+public class AsteriskAdder {
     private String formulaText;
 
     public String addAsterisks(String input) {
