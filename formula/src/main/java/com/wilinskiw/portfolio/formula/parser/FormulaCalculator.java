@@ -25,7 +25,7 @@ public class FormulaCalculator {
             Double result = parser.parseExpression(formula.putValuesOfVariables()).getValue(context, Double.class);
             return result != null ? result : 0;
         } catch (ParseException e) {
-            throw new ParseException(formula.getParsedForm(), e.getPosition(), "Input expression could not be parsed," +
+            throw new ParseException(formula.parsedForm(), e.getPosition(), "Input expression could not be parsed," +
                     "because of unexpected character");
         }
     }

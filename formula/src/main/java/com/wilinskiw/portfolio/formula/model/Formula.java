@@ -2,17 +2,7 @@ package com.wilinskiw.portfolio.formula.model;
 
 import java.util.Map;
 
-public class Formula {
-    private final String inputForm;
-    private final String parsedForm;
-    private final Map<String, Double> variables;
-
-    public Formula(String inputForm, String parsedForm, Map<String, Double> variables) {
-        this.inputForm = inputForm;
-        this.parsedForm = parsedForm;
-        this.variables = variables;
-    }
-
+public record Formula(String inputForm, String parsedForm, Map<String, Double> variables) {
     public String putValuesOfVariables() {
         if (variables.isEmpty()) {
             return parsedForm;
@@ -26,18 +16,6 @@ public class Formula {
         }
 
         return calculationForm;
-    }
-
-    public String getInputForm() {
-        return inputForm;
-    }
-
-    public String getParsedForm() {
-        return parsedForm;
-    }
-
-    public Map<String, Double> getVariables() {
-        return variables;
     }
 
     @Override
