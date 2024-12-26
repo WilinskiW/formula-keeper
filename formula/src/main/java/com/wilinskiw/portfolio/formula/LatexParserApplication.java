@@ -17,7 +17,7 @@ public class LatexParserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        String latexInput = "4(a+ba(42(a)))c";
+        String latexInput = "\\frac{a}(4}-b\\cdot5++2";
         MathFormatParser latexParser = new LatexParser();
         Formula formula = latexParser.parse(latexInput);
         System.out.println("Converted Formula: " + formula);

@@ -32,8 +32,7 @@ public class LatexParser implements MathFormatParser {
         Matcher matcher = pattern.matcher(formula);
 
         while (matcher.find()) {
-            formula = matcher.replaceAll(latex.getValue());
-            matcher = pattern.matcher(formula);
+            formula = formula.replaceAll(pattern.pattern(), latex.getValue());
         }
         return formula;
     }
