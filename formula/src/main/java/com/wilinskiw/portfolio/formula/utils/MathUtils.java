@@ -1,17 +1,17 @@
 package com.wilinskiw.portfolio.formula.utils;
 
 public class MathUtils {
-    public double div(double a, double b){
-        try {
+    public double div(double a, double b) {
+        if (b != 0) {
             return a / b;
-        }
-        catch (ArithmeticException e){
+        } else
             throw new ArithmeticException("Error. Divided by 0");
-        }
     }
 
-    public double nSqrt(double x, double n) {
+    public double nSqrt(double x, int n) {
         if (x < 0 && n % 2 != 0) {
+            return -Math.pow(-x, 1.0 / n);
+        } else if (x < 0) {
             return -Math.pow(-x, 1.0 / n);
         }
         return Math.pow(x, 1.0 / n);
@@ -30,14 +30,35 @@ public class MathUtils {
     }
 
     public double sin(double angle) {
-        return Math.sin(Math.toRadians(angle));
+        double angRadians = Math.toRadians(angle);
+        double result = Math.sin(angRadians);
+        if (Math.abs(result) < 1e-10) {
+            return 0.0;
+        }
+        return result;
     }
 
     public double cos(double angle) {
-        return Math.cos(Math.toRadians(angle));
+        double angRadians = Math.toRadians(angle);
+        double result = Math.cos(angRadians);
+        if (Math.abs(result) < 1e-10) {
+            return 0.0;
+        }
+        return result;
     }
 
     public double tan(double angle) {
-        return Math.tan(Math.toRadians(angle));
+        if (Math.abs(angle % 180) == 90) {
+            throw new ArithmeticException("Tangent is undefined for angle " + angle);
+        }
+
+        double angRadians = Math.toRadians(angle);
+        double result = Math.tan(angRadians);
+
+        if (Math.abs(result) > 1e10) {
+            throw new ArithmeticException("Tangent is undefined for angle " + angle);
+        }
+
+        return result;
     }
 }
