@@ -17,17 +17,22 @@ public class LatexParser implements CalculationParser {
 
     @Override
     public Formula parse(String input) {
-        String formula = addAsteriskInWords(input);
+        String formula = addAsterisks(input);
         for (LatexDictionary latex : LatexDictionary.values()) {
             formula = replace(latex, formula);
         }
         return new Formula(input, formula, addVariables(formula));
     }
 
-    private String addAsteriskInWords(String latexInput) {
-        String regex = "(?<!\\\\)\\b\\d*[a-zA-Z]{2,}|\\d+[a-zA-Z]+\\b";
+    @Override
+    public String addAsterisks(String input) {
+        input = addAsteriskInVariables(input);
+        return addAsteriskNextToBrackets(input);
 
-        Pattern pattern = Pattern.compile(regex);
+    }
+
+    private String addAsteriskInVariables(String latexInput) {
+        Pattern pattern = Pattern.compile("(?<!\\\\)\\b\\d*[a-zA-Z]{2,}|\\d+[a-zA-Z]+\\b");
         Matcher matcher = pattern.matcher(latexInput);
 
         StringBuilder result = new StringBuilder();
@@ -49,6 +54,37 @@ public class LatexParser implements CalculationParser {
 
         return result.toString();
     }
+
+    private String addAsteriskNextToBrackets(String input){
+        input = addAsteriskToLeftBrackets(input);
+        input = addAsteriskToRightBrackets(input);
+        return input;
+    }
+
+    private String addAsteriskToLeftBrackets(String input){
+        Pattern pattern = Pattern.compile("(?<!\\\\lef)(\\w)\\(");
+        Matcher matcher = pattern.matcher(input);
+
+        while (matcher.find()) {
+            input = input.replaceAll(pattern.pattern(), "$1*(");
+        }
+
+        return input;
+    }
+
+    private String addAsteriskToRightBrackets(String input){
+        Pattern pattern = Pattern.compile("\\)(\\w)");
+        Matcher matcher = pattern.matcher(input);
+
+        while (matcher.find()) {
+            input = input.replaceAll(pattern.pattern(), ")*$1");
+        }
+
+        return input;
+    }
+
+
+
 
     private String replace(LatexDictionary latex, String formula) {
         Pattern pattern = Pattern.compile(latex.getLatexFormat());
