@@ -15,7 +15,7 @@ public enum LatexDictionary {
     TAN("\\\\tan(\\d+)", "#mathUtils.tan($1)"),
     PI("\\\\pi", "T(java.lang.Math).PI"),
     ROUND_BRACKETS("\\\\left\\(([^)]+)\\\\right\\)", "($1)"),
-    PERCENT("(\\d+)\\\\%", "$1 * 0.01");
+    PERCENT("(\\d+)\\\\%", "$1*0.01");
 
 
     private final String latexFormat;

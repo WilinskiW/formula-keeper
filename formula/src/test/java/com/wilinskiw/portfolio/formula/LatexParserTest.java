@@ -111,4 +111,10 @@ public class LatexParserTest {
         Formula testFormula = latexParser.parse("\\left(2+2\\right)");
         assertEquals("(2+2)", testFormula.getParsedForm());
     }
+
+    @Test
+    public void parseLatexPercentTest(){
+        Formula testFormula = latexParser.parse("100\\%*54");
+        assertEquals("100*0.01*54", testFormula.getParsedForm());
+    }
 }
