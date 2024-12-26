@@ -1,7 +1,7 @@
 package com.wilinskiw.portfolio.formula;
 
 import com.wilinskiw.portfolio.formula.model.Formula;
-import com.wilinskiw.portfolio.formula.parser.latex.LatexParser;
+import com.wilinskiw.portfolio.formula.parser.LatexParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.ParseException;

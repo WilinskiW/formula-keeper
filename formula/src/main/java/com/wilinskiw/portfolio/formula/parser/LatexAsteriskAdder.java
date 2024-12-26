@@ -1,14 +1,11 @@
-package com.wilinskiw.portfolio.formula.parser.latex;
-
-import com.wilinskiw.portfolio.formula.parser.AsteriskAdder;
+package com.wilinskiw.portfolio.formula.parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LatexAsteriskAdder implements AsteriskAdder {
+public class LatexAsteriskAdder {
     private String formulaText;
 
-    @Override
     public String addAsterisks(String input) {
         this.formulaText = input;
         this.formulaText = addAsteriskInWords();

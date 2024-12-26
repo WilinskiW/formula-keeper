@@ -1,6 +1,6 @@
 package com.wilinskiw.portfolio.formula;
 
-import com.wilinskiw.portfolio.formula.parser.latex.LatexAsteriskAdder;
+import com.wilinskiw.portfolio.formula.parser.LatexAsteriskAdder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

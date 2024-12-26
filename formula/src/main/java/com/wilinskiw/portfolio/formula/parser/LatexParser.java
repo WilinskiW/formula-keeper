@@ -1,8 +1,6 @@
-package com.wilinskiw.portfolio.formula.parser.latex;
+package com.wilinskiw.portfolio.formula.parser;
 
 import com.wilinskiw.portfolio.formula.model.Formula;
-import com.wilinskiw.portfolio.formula.parser.AsteriskAdder;
-import com.wilinskiw.portfolio.formula.parser.MathFormatParser;
 import org.springframework.expression.ParseException;
 
 import java.util.Map;
@@ -10,14 +8,13 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LatexParser implements MathFormatParser {
-    private final AsteriskAdder latexAsteriskAdder;
+public class LatexParser{
+    private final LatexAsteriskAdder latexAsteriskAdder;
 
     public LatexParser() {
         this.latexAsteriskAdder = new LatexAsteriskAdder();
     }
 
-    @Override
     public Formula parse(String input) {
         String formula = latexAsteriskAdder.addAsterisks(input);
 
@@ -43,8 +40,7 @@ public class LatexParser implements MathFormatParser {
         return formula;
     }
 
-    @Override
-    public Map<String, Double> findVariables(String formula) {
+    private Map<String, Double> findVariables(String formula) {
         Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9(])");
         Matcher matcher = pattern.matcher(formula);
         Map<String, Double> variables = new TreeMap<>();

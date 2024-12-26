@@ -1,5 +1,5 @@
-package com.wilinskiw.portfolio.formula.parser.latex;
-
+package com.wilinskiw.portfolio.formula.parser;
+//todo Odczyt słownik poprzez plik np. YAML
 public enum LatexDictionary {
     CDOT("\\\\cdot", "*"),
     DIV("\\\\div", "/"),
