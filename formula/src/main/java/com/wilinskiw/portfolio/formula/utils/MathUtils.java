@@ -55,6 +55,10 @@ public class MathUtils {
         double angRadians = Math.toRadians(angle);
         double result = Math.tan(angRadians);
 
+        if (Math.abs(result - 1.0) < 1e-10) {
+            return 1.0;
+        }
+
         if (Math.abs(result) > 1e10) {
             throw new ArithmeticException("Tangent is undefined for angle " + angle);
         }
