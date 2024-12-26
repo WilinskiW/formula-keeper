@@ -28,6 +28,18 @@ public class Formula {
         return calculationForm;
     }
 
+    public String getLatex() {
+        return latex;
+    }
+
+    public String getParsedForm() {
+        return parsedForm;
+    }
+
+    public Map<String, Double> getVariables() {
+        return variables;
+    }
+
     @Override
     public String toString() {
         return "Formula{" +

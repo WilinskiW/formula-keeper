@@ -8,8 +8,6 @@ import org.springframework.expression.ParseException;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -19,27 +17,15 @@ public class LatexParser implements CalculationParser {
 
     @Override
     public Formula parse(String input) {
-        String formula = addAsterisk(input);
+        String formula = addAsteriskInWords(input);
         for (LatexDictionary latex : LatexDictionary.values()) {
             formula = replace(latex, formula);
         }
-        return new Formula(input, formula, findVariables(formula));
+        return new Formula(input, formula, addVariables(formula));
     }
 
-    private String replace(LatexDictionary latex, String formula) {
-        Pattern pattern = Pattern.compile(latex.getLatexFormat());
-        Matcher matcher = pattern.matcher(formula);
-
-        while (matcher.find()) {
-            formula = matcher.replaceAll(latex.getValue());
-            matcher = pattern.matcher(formula);
-        }
-        return formula;
-    }
-
-    public String addAsterisk(String latexInput) {
-
-        String regex = "(?<!\\\\)\\b\\w{2,}\\b";
+    private String addAsteriskInWords(String latexInput) {
+        String regex = "(?<!\\\\)\\b\\d*[a-zA-Z]{2,}|\\d+[a-zA-Z]+\\b";
 
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(latexInput);
@@ -64,7 +50,18 @@ public class LatexParser implements CalculationParser {
         return result.toString();
     }
 
-    public Map<String, Double> findVariables(String formula) {
+    private String replace(LatexDictionary latex, String formula) {
+        Pattern pattern = Pattern.compile(latex.getLatexFormat());
+        Matcher matcher = pattern.matcher(formula);
+
+        while (matcher.find()) {
+            formula = matcher.replaceAll(latex.getValue());
+            matcher = pattern.matcher(formula);
+        }
+        return formula;
+    }
+
+    private Map<String, Double> addVariables(String formula) {
         Pattern pattern = Pattern.compile("(?<![a-zA-Z0-9])([a-zA-Z])(?![a-zA-Z0-9(])");
         Matcher matcher = pattern.matcher(formula);
         Map<String, Double> variables = new TreeMap<>();
