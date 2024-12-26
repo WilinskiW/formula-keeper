@@ -1,7 +1,7 @@
 package com.wilinskiw.portfolio.formula;
 
 import com.wilinskiw.portfolio.formula.model.Formula;
-import com.wilinskiw.portfolio.formula.parser.LatexParser;
+import com.wilinskiw.portfolio.formula.parser.latex.LatexParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class LatexParserTest {
     public void parseToObjectTest() {
         Formula testFormula = latexParser.parse("b^{4a}-4ac+\\log_24\\cdot24");
 
-        assertEquals("b^{4a}-4ac+\\log_24\\cdot24", testFormula.getLatex());
+        assertEquals("b^{4a}-4ac+\\log_24\\cdot24", testFormula.getInputForm());
         assertEquals("T(java.lang.Math).pow(b,4*a)-4*a*c+#mathUtils.logBase(2,4)*24", testFormula.getParsedForm());
         assertEquals(Map.of("a", 0.0, "b", 0.0, "c", 0.0), testFormula.getVariables());
     }

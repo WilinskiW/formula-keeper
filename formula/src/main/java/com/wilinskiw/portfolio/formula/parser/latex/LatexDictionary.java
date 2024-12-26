@@ -1,4 +1,4 @@
-package com.wilinskiw.portfolio.formula.parser;
+package com.wilinskiw.portfolio.formula.parser.latex;
 
 public enum LatexDictionary {
     CDOT("\\\\cdot", "*"),

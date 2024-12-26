@@ -3,12 +3,12 @@ package com.wilinskiw.portfolio.formula.model;
 import java.util.Map;
 
 public class Formula {
-    private final String latex;
+    private final String inputForm;
     private final String parsedForm;
     private final Map<String, Double> variables;
 
-    public Formula(String latex, String parsedForm, Map<String, Double> variables) {
-        this.latex = latex;
+    public Formula(String inputForm, String parsedForm, Map<String, Double> variables) {
+        this.inputForm = inputForm;
         this.parsedForm = parsedForm;
         this.variables = variables;
     }
@@ -28,8 +28,8 @@ public class Formula {
         return calculationForm;
     }
 
-    public String getLatex() {
-        return latex;
+    public String getInputForm() {
+        return inputForm;
     }
 
     public String getParsedForm() {
@@ -43,7 +43,7 @@ public class Formula {
     @Override
     public String toString() {
         return "Formula{" +
-                "latex='" + latex + '\'' +
+                "latex='" + inputForm + '\'' +
                 ", parsedForm='" + parsedForm + '\'' +
                 ", variables=" + variables +
                 '}';
