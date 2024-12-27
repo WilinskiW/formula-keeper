@@ -1,3 +1,6 @@
+#File contain latex replacements for calculation.
+#Order is important. Higher elements are executed first.
+
 latexDictionary:
   DOT:
     latexFormat: ","

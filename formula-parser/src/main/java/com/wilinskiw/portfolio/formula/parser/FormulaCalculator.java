@@ -9,17 +9,30 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
 
+/**
+ * Evaluates mathematical expressions from parsed formulas using Spring Expression Language (SpEL).
+ */
 @Component
 public class FormulaCalculator {
     private final ExpressionParser parser;
     private final EvaluationContext context;
 
+    /**
+     * Constructs a FormulaCalculator and initializes the evaluation context with MathUtils.
+     */
     public FormulaCalculator() {
         this.parser = new SpelExpressionParser();
         this.context = new StandardEvaluationContext();
         context.setVariable("mathUtils", new MathUtils());
     }
 
+    /**
+     * Evaluates a parsed formula and calculates its result.
+     *
+     * @param formula The Formula object containing the expression to evaluate.
+     * @return The result of the evaluation as a double.
+     * @throws ParseException If the formula contains invalid characters or cannot be evaluated.
+     */
     public double evaluate(Formula formula) {
         try {
             Double result = parser.parseExpression(formula.putValuesOfVariables()).getValue(context, Double.class);

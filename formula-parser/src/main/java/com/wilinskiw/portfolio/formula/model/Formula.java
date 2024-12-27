@@ -17,13 +17,4 @@ public record Formula(String inputForm, String parsedForm, Map<String, Double> v
 
         return calculationForm;
     }
-
-    @Override
-    public String toString() {
-        return "Formula{" +
-                "latex='" + inputForm + '\'' +
-                ", parsedForm='" + parsedForm + '\'' +
-                ", variables=" + variables +
-                '}';
-    }
 }
