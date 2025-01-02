@@ -2,4 +2,4 @@ rootProject.name = 'formula-keeper'
 
 include 'formula-parser'
 include 'formula-web-api'
-
+include 'formula-data'
