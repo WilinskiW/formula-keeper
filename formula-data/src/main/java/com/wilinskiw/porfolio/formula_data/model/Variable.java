@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 @Entity
 public class Variable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "formula_id", nullable = false)
     private Formula formula;
