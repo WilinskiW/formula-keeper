@@ -38,7 +38,7 @@ CREATE TABLE variables
     formula_id    BIGINT       NOT NULL,
     name          VARCHAR(255) NOT NULL,
     letter        CHAR(1)      NOT NULL,
-    default_value FLOAT        NOT NULL,
+    default_value FLOAT(53)    NULL_TO_DEFAULT,
     FOREIGN KEY (formula_id) REFERENCES formulas (formula_id) ON DELETE CASCADE
 );
 
@@ -52,8 +52,8 @@ CREATE TABLE tags
 
 CREATE TABLE formula_tag
 (
-    formula_id BIGINT,
-    tag_id     BIGINT,
+    formula_id BIGINT NOT NULL,
+    tag_id     BIGINT NOT NULL,
     PRIMARY KEY (formula_id, tag_id),
     FOREIGN KEY (formula_id) REFERENCES formulas (formula_id),
     FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
