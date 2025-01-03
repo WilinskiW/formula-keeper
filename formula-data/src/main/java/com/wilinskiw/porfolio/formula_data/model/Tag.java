@@ -10,6 +10,8 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tag_id")
     private int id;
+
+    @Column(nullable = false)
     private String name;
 
     @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)

@@ -9,14 +9,22 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Formula> formulas;
 
+    @Column(nullable = false,unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
 
     public List<Formula> getFormulas() {

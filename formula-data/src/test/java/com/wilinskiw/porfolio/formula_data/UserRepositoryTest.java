@@ -20,9 +20,18 @@ public class UserRepositoryTest {
     @Test
     public void saveUserTest() {
         User user = new User();
-        user.setEmail("test@gmail.com");
-        user.setPassword("ewoprldjskewkoriqo");
         User savedUser = userRepository.save(user);
         assertNotNull(user.getId());
     }
+
+    @Test
+    public void findUserByEmailTest() {
+        User user = new User();
+        user.setEmail("test@gmail.com");
+        User savedUser = userRepository.save(user);
+
+    }
+
+
+
 }

@@ -6,17 +6,20 @@ import jakarta.persistence.*;
 public class Variable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "variable_id")
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "formula_id", nullable = false)
     private Formula formula;
 
+
     private String name;
 
-    @Column(name = "variable_symbol", nullable = false)
-    private Character variableSymbol;
+    @Column(nullable = false)
+    private Character letter;
 
+    @Column(name = "default_value")
     private Double defaultValue;
 
     public Formula getFormula() {
@@ -35,12 +38,12 @@ public class Variable {
         this.name = name;
     }
 
-    public Character getVariableSymbol() {
-        return variableSymbol;
+    public Character getLetter() {
+        return letter;
     }
 
-    public void setVariableSymbol(Character symbol) {
-        this.variableSymbol = symbol;
+    public void setLetter(Character symbol) {
+        this.letter = symbol;
     }
 
     public Double getDefaultValue() {
