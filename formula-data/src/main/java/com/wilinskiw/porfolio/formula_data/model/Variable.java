@@ -3,6 +3,7 @@ package com.wilinskiw.porfolio.formula_data.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "variables")
 public class Variable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
