@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/formula-data" />
             <option value="$PROJECT_DIR$/formula-parser" />
             <option value="$PROJECT_DIR$/formula-web-api" />
           </set>
