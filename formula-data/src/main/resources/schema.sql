@@ -38,7 +38,7 @@ CREATE TABLE variables
     formula_id    BIGINT       NOT NULL,
     name          VARCHAR(255) NOT NULL,
     letter        CHAR(1)      NOT NULL,
-    default_value FLOAT        NOT NULL,
+    default_value FLOAT      NULL_TO_DEFAULT,
     FOREIGN KEY (formula_id) REFERENCES formulas (formula_id) ON DELETE CASCADE
 );
 
