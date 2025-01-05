@@ -1,10 +1,10 @@
-package com.wilinskiw.universal.user_managment;
+package com.wilinskiw.universal.user_management;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserManagmentApplicationTests {
+class UserManagementApplicationTests {
 
 	@Test
 	void contextLoads() {

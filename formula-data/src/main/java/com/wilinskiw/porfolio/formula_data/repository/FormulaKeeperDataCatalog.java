@@ -1,5 +1,8 @@
 package com.wilinskiw.porfolio.formula_data.repository;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class FormulaKeeperDataCatalog implements DataCataloger{
     private final FormulaRepository formulaRepository;
     private final UserRepository userRepository;

@@ -27,6 +27,14 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    public User() {
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public List<Formula> getFormulas() {
         return formulas;
     }

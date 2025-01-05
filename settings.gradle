@@ -4,4 +4,4 @@ include 'formula-ui'
 include 'formula-service'
 include 'formula-parser'
 include 'user-management'
-includ
+include 'formula-data'

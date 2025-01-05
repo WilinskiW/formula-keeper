@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/formula-parser" />
             <option value="$PROJECT_DIR$/formula-service" />
             <option value="$PROJECT_DIR$/formula-ui" />
+            <option value="$PROJECT_DIR$/user-management" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,1 +1,3 @@
-rootProject.name = 'user-managment'
+rootProject.name = 'user-management'
+
+include ':formula-data'
