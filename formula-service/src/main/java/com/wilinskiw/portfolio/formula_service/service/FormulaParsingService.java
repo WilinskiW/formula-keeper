@@ -1,17 +1,17 @@
-package com.wilinskiw.portfolio.formula_web_api.service;
+package com.wilinskiw.portfolio.formula_service.service;
 
 import com.wilinskiw.portfolio.formula.model.Formula;
 import com.wilinskiw.portfolio.formula.parser.FormulaCalculator;
 import com.wilinskiw.portfolio.formula.parser.LatexParser;
-import com.wilinskiw.portfolio.formula_web_api.dto.FormulaResultDto;
+import com.wilinskiw.portfolio.formula_service.dto.FormulaResultDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FormulaWebService {
+public class FormulaParsingService {
     private final LatexParser parser;
     private final FormulaCalculator calculator;
 
-    public FormulaWebService() {
+    public FormulaParsingService() {
         this.parser = new LatexParser();
         this.calculator = new FormulaCalculator();
     }

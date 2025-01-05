@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formula result</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<h1>Formula result</h1>
+<strong>Latex: </strong> <span th:text="${result.latex()}"></span> <br>
+<strong>Wynik: </strong> <span th:text="${result.outcome()}"></span> <br>
+<span style="display: flex; justify-content: center" th:text="${result.latexJax}"></span>
+</body>
+</html>

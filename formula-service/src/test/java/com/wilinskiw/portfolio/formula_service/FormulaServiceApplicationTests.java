@@ -1,10 +1,10 @@
-package com.wilinskiw.portfolio.formula_web_api;
+package com.wilinskiw.portfolio.formula_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FormulaWebApiApplicationTests {
+class FormulaServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
