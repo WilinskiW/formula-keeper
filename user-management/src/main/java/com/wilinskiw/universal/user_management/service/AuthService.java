@@ -21,13 +21,30 @@ public class AuthService {
         String email = userInfoDto.email();
         String password = userInfoDto.password();
 
-        if(!userDataService.emailExists(email)) {
+        if (!userDataService.emailExists(email)) {
             userDataService.save(new User(email, password));
             log.info("User with email {} registered", email);
-        }
-        else {
+        } else {
             log.info("User with email {} already exists", email);
         }
+    }
+
+    public void loginUser(UserInfoDto userInfoDto) {
+        String email = userInfoDto.email();
+        String password = userInfoDto.password();
+        boolean success = false;
+
+        if (userDataService.emailExists(email)) {
+            success = checkUserPassword(email, password);
+        } else {
+            log.info("User with email {} does not exist", email);
+        }
+
+        log.info("User login successfully: {}", success);
+    }
+
+    private boolean checkUserPassword(String email, String password) {
+        return userDataService.checkUserCredentials(email, password);
     }
 
 }

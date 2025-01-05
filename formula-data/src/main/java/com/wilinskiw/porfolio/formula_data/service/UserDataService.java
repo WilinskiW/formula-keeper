@@ -26,4 +26,8 @@ public class UserDataService {
         return userRepository.existsByEmail(email);
    }
 
+   public boolean checkUserCredentials(String email, String password) {
+        return userRepository.findUserByEmailAndPassword(email,password) != null;
+   }
+
 }

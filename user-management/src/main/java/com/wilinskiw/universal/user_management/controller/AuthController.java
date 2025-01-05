@@ -25,4 +25,8 @@ public class AuthController {
     }
 
     //log in user
+    @PostMapping("/login")
+    public void loginUser(@RequestBody UserInfoDto userLogin){
+        authService.loginUser(userLogin);
+    }
 }
