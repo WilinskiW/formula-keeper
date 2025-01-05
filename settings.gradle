@@ -3,4 +3,5 @@ rootProject.name = 'formula-keeper'
 include 'formula-ui'
 include 'formula-service'
 include 'formula-parser'
-include 'formula-data'
+include 'user-management'
+includ
