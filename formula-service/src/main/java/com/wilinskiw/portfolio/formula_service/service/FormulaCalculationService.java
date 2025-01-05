@@ -7,11 +7,11 @@ import com.wilinskiw.portfolio.formula_service.dto.FormulaResultDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FormulaParsingService {
+public class FormulaCalculationService {
     private final LatexParser parser;
     private final FormulaCalculator calculator;
 
-    public FormulaParsingService() {
+    public FormulaCalculationService() {
         this.parser = new LatexParser();
         this.calculator = new FormulaCalculator();
     }

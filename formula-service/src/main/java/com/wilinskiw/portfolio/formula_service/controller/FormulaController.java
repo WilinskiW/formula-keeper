@@ -1,30 +1,25 @@
 package com.wilinskiw.portfolio.formula_service.controller;
 
-import com.wilinskiw.portfolio.formula_service.service.FormulaParsingService;
+import com.wilinskiw.portfolio.formula_service.dto.FormulaResultDto;
+import com.wilinskiw.portfolio.formula_service.service.FormulaCalculationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("api/formula")
 public class FormulaController {
-    private final FormulaParsingService webService;
+    private final FormulaCalculationService calculationService;
 
     @Autowired
-    public FormulaController(FormulaParsingService webService) {
-        this.webService = webService;
+    public FormulaController(FormulaCalculationService calculationService) {
+        this.calculationService = calculationService;
     }
 
-    @GetMapping("/form")
-    public String viewForm() {
-        return "formula-form";
-    }
-
-    @PostMapping("/form")
-    public String getResult(@RequestParam("latex") String mathField, Model model) {
-        model.addAttribute("result", webService.parseFormula(mathField));
-        return "formula-result";
+    @PostMapping("/calculate")
+    public ResponseEntity<FormulaResultDto> getResult(@RequestBody String formula) {
+        FormulaResultDto resultDto = calculationService.parseFormula(formula);
+        return new ResponseEntity<>(resultDto, HttpStatus.OK);
     }
 }

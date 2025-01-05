@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FormulaWebApiApplication {
+public class FormulaUiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FormulaWebApiApplication.class, args);
+		SpringApplication.run(FormulaUiApplication.class, args);
 	}
 
 }
