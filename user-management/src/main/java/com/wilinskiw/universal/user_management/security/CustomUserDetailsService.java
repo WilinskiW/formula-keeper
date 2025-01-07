@@ -1,17 +1,16 @@
 package com.wilinskiw.universal.user_management.security;
 
+import com.wilinskiw.porfolio.formula_data.model.Role;
 import com.wilinskiw.porfolio.formula_data.model.User;
 import com.wilinskiw.porfolio.formula_data.service.UserDataService;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -28,14 +27,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<User> validationUser = userDataService.findUserByEmail(username);
         if (validationUser.isPresent()) {
             User user = validationUser.get();
-            return null; //todo
+            return org.springframework.security.core.userdetails.User.builder()
+                    .username(user.getEmail())
+                    .password(user.getPassword())
+                    .authorities(appendRolesToStr(userDataService.findUserRolesByUser(user)))
+                    .build();
         }
         throw new UsernameNotFoundException("Email or password not found");
     }
 
-    public Collection<? extends GrantedAuthority> authorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
+    private String appendRolesToStr(List<Role> roles){
+       return roles.stream()
+               .map(role -> role.getRole())
+               .collect(Collectors.joining(", "));
     }
-
-
 }

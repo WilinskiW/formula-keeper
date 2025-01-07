@@ -18,7 +18,7 @@ public class FormulaController {
     @PostMapping("/calculate")
     public String calculateFormula(@RequestParam("latex") String formula, Model model) {
         FormulaResultDto resultDto = restTemplate.postForObject
-                ("http://localhost:8080/api/formula/calculate", formula, FormulaResultDto.class);
+                ("http://localhost:8081/api/formula/calculate", formula, FormulaResultDto.class);
         model.addAttribute("result", resultDto);
         return "formula-result";
     }

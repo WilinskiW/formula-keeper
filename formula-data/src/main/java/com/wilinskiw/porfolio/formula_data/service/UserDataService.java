@@ -1,18 +1,24 @@
 package com.wilinskiw.porfolio.formula_data.service;
 
+import com.wilinskiw.porfolio.formula_data.model.Role;
 import com.wilinskiw.porfolio.formula_data.model.User;
+import com.wilinskiw.porfolio.formula_data.repository.RoleRepository;
 import com.wilinskiw.porfolio.formula_data.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserDataService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public UserDataService(UserRepository userRepository) {
+    public UserDataService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Transactional
@@ -26,6 +32,13 @@ public class UserDataService {
 
     public Optional<User> findUserByEmail(String email) {
         return Optional.of(userRepository.findUserByEmail(email));
+    }
+
+    public List<Role> findUserRolesByUser(User user) {
+        if(user != null){
+            return roleRepository.findRoleByUser(user);
+        }
+        return new ArrayList<>();
     }
 
    public boolean emailExists(String email) {

@@ -9,11 +9,28 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
+subprojects {
+    apply plugin: 'java'
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.30'
+        annotationProcessor 'org.projectlombok:lombok:1.18.30'
+        testImplementation platform('org.junit:junit-bom:5.10.0')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+    }
+
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            options.annotationProcessorPath = configurations.annotationProcessor
+        }
+    }
+}
 test {
     useJUnitPlatform()
 }

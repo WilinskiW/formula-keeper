@@ -6,9 +6,10 @@
 </head>
 <body>
 <h1>Log in</h1>
-<form action="#" th:action="/login" method="POST"></form>
+<form action="#" th:action="@{/authenticateTheUser}" method="POST"></form>
 <input type="email" name="email" placeholder="email" style="margin-bottom: 5px">
 <br>
 <input type="password" name="password" placeholder="password">
+<input type="submit" value="Submit">
 </body>
 </html>
