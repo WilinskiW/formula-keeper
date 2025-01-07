@@ -1,9 +1,17 @@
 package com.wilinskiw.porfolio.formula_data.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "variables")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Variable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +22,6 @@ public class Variable {
     @JoinColumn(name = "formula_id", nullable = false)
     private Formula formula;
 
-
     private String name;
 
     @Column(nullable = false)
@@ -22,36 +29,4 @@ public class Variable {
 
     @Column(name = "default_value")
     private Double defaultValue;
-
-    public Formula getFormula() {
-        return formula;
-    }
-
-    public void setFormula(Formula formula) {
-        this.formula = formula;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Character getLetter() {
-        return letter;
-    }
-
-    public void setLetter(Character symbol) {
-        this.letter = symbol;
-    }
-
-    public Double getDefaultValue() {
-        return defaultValue;
-    }
-
-    public void setDefaultValue(Double defaultValue) {
-        this.defaultValue = defaultValue;
-    }
 }

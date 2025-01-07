@@ -1,6 +1,5 @@
 package com.wilinskiw.universal.user_management.service;
 
-import com.wilinskiw.porfolio.formula_data.model.User;
 import com.wilinskiw.porfolio.formula_data.service.UserDataService;
 import com.wilinskiw.universal.user_management.dto.UserInfoDto;
 import org.slf4j.Logger;
@@ -22,7 +21,6 @@ public class AuthService {
         String password = userInfoDto.password();
 
         if (!userDataService.emailExists(email)) {
-            userDataService.save(new User(email, password));
             log.info("User with email {} registered", email);
         } else {
             log.info("User with email {} already exists", email);
