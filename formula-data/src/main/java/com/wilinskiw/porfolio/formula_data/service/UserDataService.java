@@ -5,6 +5,8 @@ import com.wilinskiw.porfolio.formula_data.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserDataService {
     private final UserRepository userRepository;
@@ -18,8 +20,12 @@ public class UserDataService {
         userRepository.save(user);
     }
 
-    public User getUserById(Long id) {
+    public User findUserById(Long id) {
         return userRepository.findUserById(id);
+    }
+
+    public Optional<User> findUserByEmail(String email) {
+        return Optional.of(userRepository.findUserByEmail(email));
     }
 
    public boolean emailExists(String email) {

@@ -19,4 +19,14 @@ public class MainPageController {
     public String viewUserPanel() {
         return "user-panel";
     }
+
+    @GetMapping("/login")
+    public String viewLogin() {
+        return "login-form";
+    }
+
+    @GetMapping("/login/success")
+    public String viewLoginSuccess() {
+        return "login-success";
+    }
 }

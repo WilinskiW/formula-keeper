@@ -13,11 +13,6 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @RequestMapping( "/hello" )
-    public String echo() {
-        return "Hello World!";
-    }
-
     //register user
     @PostMapping("/register")
     public void registerUser(@RequestBody UserInfoDto userRegister){
